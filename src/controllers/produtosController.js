@@ -4,7 +4,16 @@ const produtosService = require("../services/produtosService")
 exports.mostrarProdutos = async (req, res) => {
     try{
         const produtos = await produtosService.mostrar()
-        res.status(200).json(produtos)
+
+        const produtosFormatados = produtos.map(produtos  => {
+            return {
+                ...produtos.toObject(),
+                id: produtos._id,
+                _id: undefined
+            }
+        })
+
+        res.status(200).json(produtosFormatados)
     } catch (erro){
         res.status(500).json({erro: "Erro ao mostrar produtos", detalhes: erro.message})
     }
