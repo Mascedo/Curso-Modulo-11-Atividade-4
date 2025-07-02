@@ -18,7 +18,7 @@ class produtosService{
 
     async atualizar(id, nome, categoria, preco){
         if(!(id&&nome&&categoria&&preco)){
-            throw new Error("Todos os campos são necessarios!")
+            throw new Error("Todos os campos são necessarios para atualizar!")
         }
 
         const dadosAtualizados = ({nome, categoria, preco})

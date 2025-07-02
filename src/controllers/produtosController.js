@@ -12,17 +12,8 @@ exports.mostrarProdutos = async (req, res) => {
 
 exports.criarProduto = async (req, res) => {
     try{
-        const id = req.params.id
-
         const {nome, categoria, preco} = req.body
-        let novoProduto;
-
-        if(!id){
-            novoProduto = await produtosService.criar(nome, categoria, preco)
-        } else{
-            novoProduto = await produtosService.atualizar(id, nome, categoria, preco)
-        }
-
+        const novoProduto = await produtosService.criar(nome, categoria, preco)
         res.status(201).json(novoProduto)
     }catch(erro){
         res.status(500).json({erro: erro.message})
